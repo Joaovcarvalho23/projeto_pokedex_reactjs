@@ -7,13 +7,43 @@ import axios from 'axios'
 export const Menu = () => {
   //criando states
   const [pokemons, setPokemons] = useState([]) //inicialmente será um array vazio
+  useEffect(() => {
+    buscarPokemons();
+  }, []);
+  
+  const buscarPokemons = async function () {
+    try {
+      const listaEndpoints = [];
+      for(let j = 1; j < 152; j++) {
+        listaEndpoints.push(`https://pokeapi.co/api/v2/pokemon/${j}/`);
+      }
+      console.log(listaEndpoints);
+      let responses = await Promise.all(listaEndpoints.map((endpoint) => axios.get(endpoint)));
+      console.log(responses);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
 
-  useEffect(() => buscarPokemons())
+  //TAMBÉM FUNCIONA...
+  // useEffect(() => {
+  //   buscarPokemons();
+  // }, []);
 
-  const buscarPokemons = function () {
-    //fazendo a requisição à API (PokéApi)
-    axios.get("https://pokeapi.co/api/v2/pokemon?limit=151").then((resposta) => {setPokemons(resposta.data.results)}).catch((erro) => {console.log(erro)})
-  }
+  // const buscarPokemons = () => {
+  //   var listaEndpoints = []
+  //   for(let j = 1; j<152; j++){
+  //     listaEndpoints.push(`https://pokeapi.co/api/v2/pokemon/${j}/`)
+  //   }
+  //   console.log(listaEndpoints)
+  //   var response = axios.all(listaEndpoints.map((endpoint) => axios.get(endpoint)))
+  //   return response
+  
+    
+  //   //fazendo a requisição à API (PokéApi)
+  //   //axios.get("https://pokeapi.co/api/v2/pokemon?limit=151").then((resposta) => {setPokemons(resposta.data.results)}).catch((erro) => {console.log(erro)})
+  // }
   
   
   return (
