@@ -18,7 +18,7 @@ export const Menu = () => {
         listaEndpoints.push(`https://pokeapi.co/api/v2/pokemon/${j}/`);
       }
       console.log(listaEndpoints);
-      let responses = await Promise.all(listaEndpoints.map((endpoint) => axios.get(endpoint)));
+      let responses = await Promise.all(listaEndpoints.map((endpoint) => axios.get(endpoint))).then((resposta) => /*console.log para testar*/setPokemons(resposta));
       console.log(responses);
     } catch (error) {
       console.error(error);
@@ -56,7 +56,10 @@ export const Menu = () => {
         {/* aqui dentro, vamos fazer um map para mapear as cartas de pokemons,
         pois o container será criado apenas uma vez, e o item será
         criado a cada iteração*/}
-        {pokemons.map((meuPokemon) => (<Grid item xs = {3}><CartaPokemon name = {meuPokemon.name}/></Grid>))}
+        {pokemons.map((meuPokemon) => (
+          <Grid item xs = {2}>
+            <CartaPokemon name = {meuPokemon.data.name} fotoPokemon = {meuPokemon.data.sprites.front_default}/>
+          </Grid>))}
       </Grid>
      </Container>
    </div>
