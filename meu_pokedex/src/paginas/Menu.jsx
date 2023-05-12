@@ -3,6 +3,15 @@ import Navbar from '../components/navbar'
 import CartaPokemon from '../components/cartaPokemon'
 import { Container, Grid, colors } from '@mui/material'
 import axios from 'axios'
+import planoDeFundo from '../assets/background-pokemon.jpg'
+
+const styles = {
+  gridContainer: {
+    backgroundImage: `url(${planoDeFundo})`,
+    backgroundSize: 'cover',
+    height: '100vh'
+  }
+}
 
 export const Menu = () => {
   //criando states
@@ -50,7 +59,7 @@ export const Menu = () => {
    <div>
      <Navbar />
      {/* backgroundColor: "yellow" */}
-     <Container maxWidth = "false" style={{backgroundColor: "yellow"}}>
+     <Container maxWidth = "false" style={styles.gridContainer}>
         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
        
           {/* aqui dentro, vamos fazer um map para mapear as cartas de pokemons,
