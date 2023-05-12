@@ -26,7 +26,7 @@ export const Menu = () => {
         {/* aqui dentro, vamos fazer um map para mapear as cartas de pokemons,
         pois o container será criado apenas uma vez, e o item será
         criado a cada iteração*/}
-        {pokemons.map((meuPokemon) => (<Grid item xs = {3}><CartaPokemon /></Grid>))}
+        {pokemons.map((meuPokemon) => (<Grid item xs = {3}><CartaPokemon name = {meuPokemon.name}/></Grid>))}
       </Grid>
      </Container>
    </div>
