@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../components/navbar'
 import CartaPokemon from '../components/cartaPokemon'
-import { Container, Grid } from '@mui/material'
+import { Container, Grid, colors } from '@mui/material'
 import axios from 'axios'
 
 export const Menu = () => {
@@ -47,20 +47,20 @@ export const Menu = () => {
   
   
   return (
-   //<div>Menu alo</div>
    <div>
      <Navbar />
-     <Container maxWidth = "false">
-
-      <Grid container>
-        {/* aqui dentro, vamos fazer um map para mapear as cartas de pokemons,
-        pois o container será criado apenas uma vez, e o item será
-        criado a cada iteração*/}
-        {pokemons.map((meuPokemon) => (
-          <Grid item xs = {2}>
-            <CartaPokemon name = {meuPokemon.data.name} fotoPokemon = {meuPokemon.data.sprites.front_default}/>
-          </Grid>))}
-      </Grid>
+     {/* backgroundColor: "yellow" */}
+     <Container maxWidth = "false" style={{backgroundColor: "yellow"}}>
+        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+       
+          {/* aqui dentro, vamos fazer um map para mapear as cartas de pokemons,
+          pois o container será criado apenas uma vez, e o item será
+          criado a cada iteração*/}
+          {pokemons.map((meuPokemon) => (
+            <Grid item xs = {3}>
+               <CartaPokemon name = {meuPokemon.data.name} fotoPokemon = {meuPokemon.data.sprites.front_default}/>
+            </Grid>))}
+         </Grid>
      </Container>
    </div>
    

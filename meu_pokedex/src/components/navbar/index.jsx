@@ -54,7 +54,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function navbar() {
   return (
     <Box sx={{ flexGrow: 1, marginBottom: "1em"}}>
-      <AppBar position="static">
+      <AppBar position="static" style={{backgroundColor: "black"}}>
         <Toolbar>
           <IconButton
             size="large"
@@ -71,7 +71,7 @@ export default function navbar() {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            MUI
+            Pokédex
           </Typography>
           <Search>
             <SearchIconWrapper>
