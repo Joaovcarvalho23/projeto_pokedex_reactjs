@@ -15,7 +15,7 @@ export default function CartaPokemon({name, fotoPokemon}) {
         title="green iguana"
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" component="div" fontStyle={'oblique'}>
           {name}
         </Typography>
         {/* <Typography variant="body2" color="text.secondary">
