@@ -4,6 +4,7 @@ import CartaPokemon from '../components/cartaPokemon'
 import { Container, Grid, colors } from '@mui/material'
 import axios from 'axios'
 
+//Plano de fundo
 const styles = {
     backgroundImage: `url('/assets/background pokemon.jpg')`,
     backgroundSize: 'cover',
@@ -34,41 +35,30 @@ export const Menu = () => {
       console.error(error);
     }
   };
-  
 
-  //TAMBÉM FUNCIONA...
-  // useEffect(() => {
-  //   buscarPokemons();
-  // }, []);
-
-  // const buscarPokemons = () => {
-  //   var listaEndpoints = []
-  //   for(let j = 1; j<152; j++){
-  //     listaEndpoints.push(`https://pokeapi.co/api/v2/pokemon/${j}/`)
-  //   }
-  //   console.log(listaEndpoints)
-  //   var response = axios.all(listaEndpoints.map((endpoint) => axios.get(endpoint)))
-  //   return response
-  
-    
-  //   //fazendo a requisição à API (PokéApi)
-  //   //axios.get("https://pokeapi.co/api/v2/pokemon?limit=151").then((resposta) => {setPokemons(resposta.data.results)}).catch((erro) => {console.log(erro)})
-  // }
-  
+  //Implementação adicional/bônus
+const filtrarPokemon = (nomePokemon) => {
+  let pokemonsFiltrados = []
+  //console.log(nomePokemon[i])
+  if(nomePokemon === '') buscarPokemons()
+  for(let i in pokemons){
+    if (pokemons[i].data.name.includes(nomePokemon)) pokemonsFiltrados.push(pokemons[i])
+  } 
+  console.log(pokemonsFiltrados)
+  setPokemons(pokemonsFiltrados)
+}
   
   return (
    <div >
-     <Navbar />
+     <Navbar filtrarPokemon={filtrarPokemon}/>
      <Container maxWidth = "false" style={styles}>
      {/* <Container maxWidth = "false" style={{backgroundColor: "yellow"}}> */}
         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
        
-          {/* aqui dentro, vamos fazer um map para mapear as cartas de pokemons,
-          pois o container será criado apenas uma vez, e o item será
-          criado a cada iteração*/}
           {pokemons.map((meuPokemon) => (
-            <Grid item xs = {2}>
-               <CartaPokemon name = {meuPokemon.data.name} fotoPokemon = {meuPokemon.data.sprites.front_default}/>
+            <Grid item xs = {12} sm = {2} md = {2}>
+               <CartaPokemon name = {meuPokemon.data.name} 
+               fotoPokemon = {meuPokemon.data.sprites.front_default}/>
             </Grid>))}
          </Grid>
      </Container>
