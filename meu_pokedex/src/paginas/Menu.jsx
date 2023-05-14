@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../components/navbar'
 import CartaPokemon from '../components/cartaPokemon'
-import { Container, Grid, colors } from '@mui/material'
+import { Container, Grid, Box } from '@mui/material'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+
 
 //Plano de fundo
 const styles = {
@@ -15,13 +17,17 @@ const styles = {
     justifyContent: 'center'
 }
 
-export const Menu = () => {
+export const Menu = ({setInfoPokemon}) => {
   //criando states
+  // const navigate = useNavigate()
   const [pokemons, setPokemons] = useState([]) //inicialmente será um array vazio
+  const navigate = useNavigate()
+
   useEffect(() => {
     buscarPokemons();
   }, []);
   
+// Implementação adicional/bônus de filtragem no campo de busca
   const buscarPokemons = async function () {
     try {
       const listaEndpoints = [];
@@ -36,7 +42,7 @@ export const Menu = () => {
     }
   };
 
-  //Implementação adicional/bônus
+  //Implementação adicional/bônus de filtragem no campo de busca
 const filtrarPokemon = (nomePokemon) => {
   let pokemonsFiltrados = []
   //console.log(nomePokemon[i])
@@ -46,6 +52,11 @@ const filtrarPokemon = (nomePokemon) => {
   } 
   console.log(pokemonsFiltrados)
   setPokemons(pokemonsFiltrados)
+}
+
+const pokemonPickHandler = (pokemonData) =>{
+  setInfoPokemon(pokemonData)
+  navigate('/informacoes')
 }
   
   return (
@@ -57,8 +68,10 @@ const filtrarPokemon = (nomePokemon) => {
        
           {pokemons.map((meuPokemon) => (
             <Grid item xs = {12} sm = {2} md = {2}>
-               <CartaPokemon name = {meuPokemon.data.name} 
-               fotoPokemon = {meuPokemon.data.sprites.front_default}/>
+              <Box onClick={() => pokemonPickHandler(meuPokemon.data)}>
+                <CartaPokemon name = {meuPokemon.data.name} 
+                fotoPokemon = {meuPokemon.data.sprites.front_default}/>
+              </Box>  
             </Grid>))}
          </Grid>
      </Container>

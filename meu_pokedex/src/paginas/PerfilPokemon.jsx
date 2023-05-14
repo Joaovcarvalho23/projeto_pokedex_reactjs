@@ -1,9 +1,9 @@
 import React from 'react'
 import Navbar from '../components/navbar'
 
-export const PerfilPokemon = () => {
+export const PerfilPokemon = ({infoPokemon}) => {
+  console.log(infoPokemon)
   return (
-    // <div>PerfilPokemon</div>
     <>
       <Navbar esconderSearchBar/>
       PerfilPokemon
