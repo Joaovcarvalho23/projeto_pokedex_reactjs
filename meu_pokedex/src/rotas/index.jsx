@@ -5,7 +5,6 @@ import { PerfilPokemon } from '../paginas/PerfilPokemon'
 
 export const RotasParaInformacoes = () => {
   const [infoPokemon, setInfoPokemon] = useState()
-
   return (
     <BrowserRouter>
         <Routes>

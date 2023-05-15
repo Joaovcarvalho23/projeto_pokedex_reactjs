@@ -63,15 +63,12 @@ export default function Navbar({filtrarPokemon, esconderSearchBar}) {
 
           {esconderSearchBar ? null : (
             <Search onChange={(evento) => filtrarPokemon(evento.target.value)}>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Buscar Pokémon"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
-          )}
+              <SearchIconWrapper> <SearchIcon/> </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Buscar Pokémon"
+                inputProps={{ 'aria-label': 'search' }}/>
+            </Search>)
+          }
         </Toolbar>
       </AppBar>
     </Box>
