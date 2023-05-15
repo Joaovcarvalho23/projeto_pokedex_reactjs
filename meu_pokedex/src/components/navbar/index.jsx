@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
+import { Grid } from '@mui/material';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -58,21 +59,24 @@ export default function Navbar({filtrarPokemon, esconderSearchBar}) {
       
       <AppBar position="static" style={{backgroundColor: "green"}}>
      
-        <Toolbar>
-        <Box component='img' src = '/assets/logo-pokedex-1.png' height='3em' width='3em'/>
-          <Typography variant="h6" noWrap component="div" sx={{cursor: 'pointer'}} onClick={() => navigate('/')}>
-            Menu
-          </Typography>
-
-          {esconderSearchBar ? null : (
-            <Search onChange={(evento) => filtrarPokemon(evento.target.value)}>
-              <SearchIconWrapper> <SearchIcon/> </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Buscar Pokémon"
-                inputProps={{ 'aria-label': 'search' }}/>
-            </Search>)
-          }
-        </Toolbar>
+      <Toolbar>
+  <Grid container spacing={2} alignItems="center" sx={{ flexGrow: 1 }}>
+    <Grid item xs={2}>
+      <Box component='img' src='/assets/logo-pokedex-1.png' height='3em' width='3em'/>
+    </Grid>
+    <Grid item xs={10} md={6} sx={{ textAlign: 'center' }}>
+      {esconderSearchBar ? null : (
+        <Search onChange={(evento) => filtrarPokemon(evento.target.value)}>
+          <SearchIconWrapper><SearchIcon/></SearchIconWrapper>
+          <StyledInputBase placeholder="Buscar Pokémon" inputProps={{ 'aria-label': 'search' }}/>
+        </Search>
+      )}
+    </Grid>
+  </Grid>
+  <Typography variant="h6" noWrap component="div" sx={{cursor: 'pointer'}} onClick={() => navigate('/')}>
+    <Box component='img' src='/assets/home.png' height='3em' width='3em'/>
+  </Typography>
+</Toolbar>
       </AppBar>
     </Box>
   );
