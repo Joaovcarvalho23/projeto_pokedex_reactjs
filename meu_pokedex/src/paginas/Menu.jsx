@@ -47,15 +47,19 @@ export const Menu = ({setInfoPokemon}) => {
   };
 
   //Implementação adicional/bônus de filtragem no campo de busca
-const filtrarPokemon = (nomePokemon) => {
-  let pokemonsFiltrados = []
-  if(nomePokemon === '') buscarPokemons()
-  for(let i in pokemons){
-    if (pokemons[i].data.name.includes(nomePokemon)) pokemonsFiltrados.push(pokemons[i])
-  } 
-  console.log(pokemonsFiltrados)
-  setPokemons(pokemonsFiltrados)
-}
+  const filtrarPokemon = (nomePokemon) => {
+    let pokemonsFiltrados = []
+    if (nomePokemon === '') buscarPokemons()
+
+    //Caso seja passada alguma letra minúscula no campo de pesquisa
+    const nomePokemonLowerCase = nomePokemon.toLowerCase()
+
+    for (let i in pokemons) {
+      const nomePokemonAtual = pokemons[i].data.name.toLowerCase()
+      if (nomePokemonAtual.includes(nomePokemonLowerCase)) pokemonsFiltrados.push(pokemons[i])
+    }
+    setPokemons(pokemonsFiltrados)
+  }
 
   return (
     <div style={{ height: '100%' }}>
