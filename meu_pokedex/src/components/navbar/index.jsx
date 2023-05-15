@@ -55,10 +55,13 @@ export default function Navbar({filtrarPokemon, esconderSearchBar}) {
   const navigate = useNavigate()
   return (
     <Box sx={{ flexGrow: 1, marginBottom: "0em"}}>
+      
       <AppBar position="static" style={{backgroundColor: "green"}}>
+     
         <Toolbar>
+        <Box component='img' src = '/assets/logo-pokedex-1.png' height='3em' width='3em'/>
           <Typography variant="h6" noWrap component="div" sx={{cursor: 'pointer'}} onClick={() => navigate('/')}>
-            Pokédex App
+            Menu
           </Typography>
 
           {esconderSearchBar ? null : (
